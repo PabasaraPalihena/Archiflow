@@ -1,0 +1,48 @@
+/* ── Editable Edge ── */
+
+/* Waypoint drag handle (blue dot) — hidden by default, shown on hover */
+.editable-edge-waypoint {
+  cursor: grab;
+  pointer-events: all;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    fill 0.15s ease;
+}
+.editable-edge-waypoint:hover {
+  fill: #2563eb;
+}
+.editable-edge-waypoint:active {
+  cursor: grabbing;
+}
+
+/* Add-waypoint button (+ circle on segment midpoint) */
+.editable-edge-add {
+  cursor: pointer;
+  pointer-events: all;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.editable-edge-add:hover circle {
+  fill: #2563eb;
+}
+.editable-edge-add:hover text {
+  fill: #fff;
+}
+
+/* Show everything on hover or when selected */
+.editable-edge-group:hover .editable-edge-waypoint,
+.editable-edge-group:hover .editable-edge-add,
+.editable-edge-group.is-selected .editable-edge-waypoint,
+.editable-edge-group.is-selected .editable-edge-add {
+  opacity: 1;
+}
+
+/* Make the invisible hit area wider for easier hovering */
+.editable-edge-hitarea {
+  stroke-width: 24;
+  stroke: transparent;
+  fill: none;
+  pointer-events: stroke;
+  cursor: pointer;
+}

@@ -1,0 +1,141 @@
+.rfWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.react-flow {
+  background: #f6f7fb;
+}
+
+/* Edge line */
+.react-flow__edge-path {
+  stroke: #111827 !important;
+  stroke-width: 2;
+}
+
+/* Add wider invisible hit area for edge clicking */
+.react-flow__edge-interactionarea {
+  stroke-width: 20px;
+  stroke: transparent;
+  fill: none;
+  pointer-events: stroke;
+}
+
+/* Arrowheads (covers all React Flow versions) */
+.react-flow__edge-arrowhead path,
+.react-flow__edge-marker path {
+  fill: #111827 !important;
+}
+
+/* Connection preview while dragging */
+.react-flow__connection-path {
+  stroke: #111827 !important;
+  stroke-width: 2;
+}
+
+/* Edge labels (e.g. Trust) */
+.react-flow__edge-text {
+  fill: #111827;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+}
+
+/* Edge type overrides */
+.edge-legacy .react-flow__edge-path {
+  stroke-dasharray: none;
+}
+
+.edge-invocation .react-flow__edge-path,
+.edge-trust .react-flow__edge-path {
+  stroke: #111827;
+}
+
+/* Selection */
+.react-flow__nodesselection-rect,
+.react-flow__selection {
+  border: 1px solid rgba(59, 130, 246, 0.55);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+/* Minimap & controls */
+.react-flow__minimap {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+}
+
+.react-flow__controls {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+}
+
+.react-flow__controls button {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.react-flow__controls button:hover {
+  background: #f3f4f6;
+}
+
+/* Handles hidden but active */
+.react-flow__handle {
+  opacity: 0;
+  background: transparent;
+  border: none;
+}
+
+.rfWrapper {
+  position: relative;
+}
+
+.pendingBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  background: #111827;
+  color: #ffffff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.18);
+  pointer-events: none;
+}
+
+.diagramNameBadge {
+  /* Removed as per user request */
+}
+
+/* --- Node pending source for edge creation --- */
+.nodePendingSource .wamShapeBox::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px dashed rgba(108, 77, 255, 0.6);
+  border-radius: 14px;
+  pointer-events: none;
+  animation: pendingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pendingPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* During edge connection: hide the default blue selection box,
+   only show the dashed indicator */
+.nodePendingSource.react-flow__node.selected,
+.react-flow__node.selected.nodePendingSource {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}

@@ -1,0 +1,144 @@
+.legal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  animation: legalFadeIn 0.15s ease-out;
+}
+
+.legal-dialog {
+  background: #fff;
+  border-radius: 16px;
+  width: 560px;
+  max-width: 92vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  animation: legalSlideUp 0.2s ease-out;
+}
+
+.legal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.legal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #2d2a4e;
+}
+
+.legal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.legal-close:hover {
+  color: #333;
+}
+
+.legal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #444;
+}
+
+.legal-body h3 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #2d2a4e;
+  margin: 18px 0 6px;
+}
+
+.legal-body h3:first-of-type {
+  margin-top: 4px;
+}
+
+.legal-body p {
+  margin: 0 0 10px;
+}
+
+.legal-body ul {
+  margin: 0 0 10px;
+  padding-left: 20px;
+}
+
+.legal-body li {
+  margin-bottom: 4px;
+}
+
+.legal-body a {
+  color: #6c4dff;
+  text-decoration: underline;
+}
+
+.legal-body a:hover {
+  color: #4a32d0;
+}
+
+.legal-updated {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+  margin: 0 0 12px;
+}
+
+.legal-footer {
+  padding: 14px 24px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.legal-btn {
+  padding: 8px 28px;
+  border-radius: 999px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #6c4dff, #8c5bff);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.legal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(108, 77, 255, 0.3);
+}
+
+@keyframes legalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes legalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

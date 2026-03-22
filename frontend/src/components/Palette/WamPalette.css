@@ -1,0 +1,157 @@
+.wam-accordion-palette {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  overflow: visible;
+  padding: 0;
+}
+
+/* Section header */
+.wap-section {
+  margin-bottom: 14px;
+}
+
+.wap-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+
+.wap-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+}
+
+.wap-chevron {
+  font-size: 12px;
+  color: #555;
+  transition: transform 0.15s ease;
+}
+
+.wap-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Card */
+.wap-card {
+  background: #f4f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.wap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 12px;
+}
+
+.wap-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Icon area */
+.wap-icon {
+  width: 72px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+}
+
+.wap-svg {
+  width: 72px;
+  height: 54px;
+  display: block;
+}
+
+.wap-line {
+  width: 72px;
+  height: 0;
+  border-top: 4px solid #111;
+  border-radius: 2px;
+  position: relative;
+}
+
+.wap-line.invocation::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: -11px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid #111 !important;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+
+.wap-line.trust::before {
+  content: "Trust";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -22px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111;
+  background: #f4f5f7;
+  padding: 0 4px;
+}
+
+/* Trust arrow = open V-style */
+.wap-line.trust::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: -9px;
+  width: 12px;
+  height: 12px;
+  border-right: 3.5px solid #111;
+  border-bottom: 3.5px solid #111;
+  transform: rotate(-45deg);
+}
+
+.wap-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 12px;
+  padding: 10px 8px;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    box-shadow 0.12s ease;
+  user-select: none;
+  cursor: grab;
+}
+
+.wap-item:hover {
+  background: rgba(17, 24, 39, 0.04);
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.06);
+  transform: translateY(-1px);
+}
+
+.wap-item:active {
+  transform: translateY(0px);
+}
+
+.wap-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  margin-top: 4px;
+}

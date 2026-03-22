@@ -1,0 +1,599 @@
+{
+  "version": "1.0.0",
+  "currency": "EUR",
+  "billingPeriod": "monthly",
+  "lastUpdated": "2026-02-26",
+  "components": {
+    "service": {
+      "description": "Web service or API endpoint",
+      "tiers": {
+        "small": {
+          "cost": 3.58,
+          "label": "Serverless / Lambda",
+          "description": "Low traffic, serverless function (e.g. AWS Lambda, Azure Functions)",
+          "providers": {
+            "aws": {
+              "service": "Lambda (live pricing)",
+              "monthlyCost": 6.32,
+              "unit": "per 1M requests + compute",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Functions Consumption",
+              "monthlyCost": 0.0,
+              "unit": "per 1M executions + compute",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud Functions",
+              "monthlyCost": 4.42,
+              "unit": "per 1M invocations + compute",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "production": {
+          "cost": 32.62,
+          "label": "Container / Small VM",
+          "description": "Moderate traffic, containerized or small VM (e.g. ECS Fargate, App Service B1)",
+          "providers": {
+            "aws": {
+              "service": "ECS Fargate (0.5 vCPU)",
+              "monthlyCost": 33.12,
+              "unit": "per task/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "VM B2s",
+              "monthlyCost": 27.94,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud Run",
+              "monthlyCost": 36.80,
+              "unit": "per vCPU/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "enterprise": {
+          "cost": 164.74,
+          "label": "Dedicated Server",
+          "description": "High traffic, dedicated compute with auto-scaling (e.g. EC2 c5.xlarge, Azure D4s)",
+          "providers": {
+            "aws": {
+              "service": "EC2 c5.xlarge",
+              "monthlyCost": 114.08,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "VM D4s v3",
+              "monthlyCost": 252.52,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Compute Engine n1-standard-4",
+              "monthlyCost": 127.60,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        }
+      },
+      "defaultTier": "production",
+      "modifiers": {
+        "apiStyle": {
+          "REST": 1,
+          "SOAP": 1.2,
+          "gRPC": 0.9,
+          "GraphQL": 1.1
+        }
+      }
+    },
+    "application": {
+      "description": "Web frontend or portal application",
+      "tiers": {
+        "small": {
+          "cost": 2.30,
+          "label": "Static Hosting",
+          "description": "Static site hosting (e.g. S3 + CloudFront, GitHub Pages)",
+          "providers": {
+            "aws": {
+              "service": "S3 + CloudFront",
+              "monthlyCost": 2.30,
+              "unit": "per GB storage + requests",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Static Web Apps Free",
+              "monthlyCost": 2.76,
+              "unit": "bandwidth overage only",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud Storage + CDN",
+              "monthlyCost": 1.84,
+              "unit": "per GB + requests",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "production": {
+          "cost": 16.99,
+          "label": "Managed App Hosting",
+          "description": "Managed platform hosting (e.g. Vercel, Netlify, Azure Static Web Apps)",
+          "providers": {
+            "aws": {
+              "service": "Amplify Hosting",
+              "monthlyCost": 16.56,
+              "unit": "build + hosting/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "App Service B1",
+              "monthlyCost": 11.42,
+              "unit": "per instance/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Firebase Hosting",
+              "monthlyCost": 23.00,
+              "unit": "Blaze plan",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "enterprise": {
+          "cost": 136.78,
+          "label": "Dedicated Web Server",
+          "description": "Dedicated web server with CDN (e.g. EC2 + CloudFront, Azure App Service Premium)",
+          "providers": {
+            "aws": {
+              "service": "EC2 + CloudFront + ALB",
+              "monthlyCost": 133.40,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "App Service P1v2 + CDN",
+              "monthlyCost": 134.32,
+              "unit": "per instance/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Compute Engine + Cloud CDN",
+              "monthlyCost": 142.60,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        }
+      },
+      "defaultTier": "production",
+      "modifiers": {}
+    },
+    "dataProvider": {
+      "description": "Database or data store",
+      "tiers": {
+        "small": {
+          "cost": 8.43,
+          "label": "Small Managed DB",
+          "description": "Small managed database (e.g. RDS db.t3.micro, MongoDB Atlas free tier)",
+          "providers": {
+            "aws": {
+              "service": "RDS db.t3.micro",
+              "monthlyCost": 11.50,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Azure SQL Basic (5 DTU)",
+              "monthlyCost": 4.59,
+              "unit": "per month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud SQL db-f1-micro",
+              "monthlyCost": 9.20,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "production": {
+          "cost": 78.50,
+          "label": "Production Managed DB",
+          "description": "Production managed database (e.g. RDS db.t3.medium, Azure SQL Basic)",
+          "providers": {
+            "aws": {
+              "service": "RDS db.t3.medium",
+              "monthlyCost": 53.36,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Azure Database for PostgreSQL",
+              "monthlyCost": 94.74,
+              "unit": "General Purpose 2 vCores",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud SQL db-standard-1",
+              "monthlyCost": 87.40,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "enterprise": {
+          "cost": 456.94,
+          "label": "Multi-AZ Database Cluster",
+          "description": "Large multi-AZ database cluster (e.g. RDS Multi-AZ, Aurora, Cosmos DB)",
+          "providers": {
+            "aws": {
+              "service": "RDS Multi-AZ db.r5.xlarge",
+              "monthlyCost": 441.60,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Azure SQL Business Critical",
+              "monthlyCost": 450.80,
+              "unit": "per month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud SQL HA db-standard-4",
+              "monthlyCost": 478.40,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        }
+      },
+      "defaultTier": "production",
+      "modifiers": {
+        "databaseType": {
+          "SQL": 1,
+          "NoSQL": 0.9,
+          "Graph": 1.2,
+          "TimeSeries": 1.1
+        }
+      }
+    },
+    "identityProvider": {
+      "description": "Identity and authentication service",
+      "tiers": {
+        "small": {
+          "cost": 0,
+          "label": "Managed Auth Free Tier",
+          "description": "Managed auth service free tier (e.g. Auth0 Free, AWS Cognito small scale)",
+          "providers": {
+            "aws": {
+              "service": "Cognito (free tier)",
+              "monthlyCost": 0,
+              "unit": "first 50k MAU free",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Azure AD B2C (free tier)",
+              "monthlyCost": 0,
+              "unit": "first 50k MAU free",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Identity Platform (free tier)",
+              "monthlyCost": 0,
+              "unit": "first 50k MAU free",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "production": {
+          "cost": 28.36,
+          "label": "Managed Auth Essentials",
+          "description": "Managed auth with more users (e.g. Auth0 Essentials, Azure AD B2C)",
+          "providers": {
+            "aws": {
+              "service": "Cognito",
+              "monthlyCost": 25.30,
+              "unit": "per 10k MAU after free tier",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Azure AD B2C",
+              "monthlyCost": 32.20,
+              "unit": "per 10k MAU premium",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Identity Platform",
+              "monthlyCost": 27.60,
+              "unit": "per 10k MAU",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "enterprise": {
+          "cost": 185.54,
+          "label": "Enterprise IdP",
+          "description": "Self-hosted or enterprise IdP (e.g. Keycloak, Okta Enterprise)",
+          "providers": {
+            "aws": {
+              "service": "Cognito + custom Lambda",
+              "monthlyCost": 179.40,
+              "unit": "enterprise scale",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Azure AD B2C Premium",
+              "monthlyCost": 184.00,
+              "unit": "enterprise scale",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Identity Platform Enterprise",
+              "monthlyCost": 193.20,
+              "unit": "enterprise scale",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        }
+      },
+      "defaultTier": "production",
+      "modifiers": {}
+    },
+    "processUnit": {
+      "description": "Background compute like batch jobs, workers, message processors",
+      "tiers": {
+        "small": {
+          "cost": 1.68,
+          "label": "Scheduled Lambda",
+          "description": "Scheduled serverless function (e.g. CloudWatch Events + Lambda)",
+          "providers": {
+            "aws": {
+              "service": "Lambda (scheduled)",
+              "monthlyCost": 1.38,
+              "unit": "per 1M requests",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Functions Consumption",
+              "monthlyCost": 1.84,
+              "unit": "per 1M executions",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud Functions (scheduled)",
+              "monthlyCost": 1.84,
+              "unit": "per 1M invocations",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "production": {
+          "cost": 27.60,
+          "label": "Worker Container",
+          "description": "Small always-on worker container (e.g. ECS Task, Azure Container Instance)",
+          "providers": {
+            "aws": {
+              "service": "ECS Fargate Task",
+              "monthlyCost": 25.76,
+              "unit": "per task/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "Container Instances (1 vCPU)",
+              "monthlyCost": 29.44,
+              "unit": "per month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Cloud Run Job",
+              "monthlyCost": 27.60,
+              "unit": "per vCPU/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        },
+        "enterprise": {
+          "cost": 80.79,
+          "label": "Dedicated Compute Node",
+          "description": "Dedicated compute node for heavy processing (e.g. EC2, Azure VM)",
+          "providers": {
+            "aws": {
+              "service": "EC2 c5.xlarge (worker)",
+              "monthlyCost": 114.08,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "azure": {
+              "service": "VM D2s v3 (worker)",
+              "monthlyCost": 64.47,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            },
+            "gcp": {
+              "service": "Compute Engine n1-standard-2",
+              "monthlyCost": 63.80,
+              "unit": "on-demand/month",
+              "lastUpdated": "2026-02-26"
+            }
+          }
+        }
+      },
+      "defaultTier": "production",
+      "modifiers": {}
+    },
+    "aiApplication": {
+      "description": "AI-powered application interface. Cost is user-defined.",
+      "tiers": {
+        "small": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI application" },
+        "production": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI application" },
+        "enterprise": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI application" }
+      },
+      "defaultTier": "production",
+      "modifiers": {},
+      "userDefined": true
+    },
+    "aiService": {
+      "description": "AI-driven backend service (e.g., inference API, recommendation engine). Cost is user-defined.",
+      "tiers": {
+        "small": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI service" },
+        "production": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI service" },
+        "enterprise": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI service" }
+      },
+      "defaultTier": "production",
+      "modifiers": {},
+      "userDefined": true
+    },
+    "aiProcess": {
+      "description": "Batch or scheduled AI processing (e.g., model training, data pipeline). Cost is user-defined.",
+      "tiers": {
+        "small": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI process" },
+        "production": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI process" },
+        "enterprise": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this AI process" }
+      },
+      "defaultTier": "production",
+      "modifiers": {},
+      "userDefined": true
+    },
+    "dataset": {
+      "description": "Data storage for AI/ML models (e.g., training data, feature store). Cost is user-defined.",
+      "tiers": {
+        "small": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this dataset" },
+        "production": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this dataset" },
+        "enterprise": { "cost": 0, "label": "User-Defined", "description": "Set your own monthly cost for this dataset" }
+      },
+      "defaultTier": "production",
+      "modifiers": {},
+      "userDefined": true
+    },
+    "securityRealm": {
+      "description": "Security realm (organizational boundary). Note: Realms are organizational boundaries; cost comes from infrastructure overhead and what components reside inside them.",
+      "tiers": {
+        "small": {
+          "cost": 0,
+          "label": "Logical Boundary",
+          "description": "Logical separation only, no additional infrastructure"
+        },
+        "production": {
+          "cost": 9.20,
+          "label": "VPC / Network Config",
+          "description": "VPC/network configuration, DNS management"
+        },
+        "enterprise": {
+          "cost": 46.00,
+          "label": "Dedicated VPC",
+          "description": "Dedicated VPC with network peering, private endpoints"
+        }
+      },
+      "defaultTier": "small",
+      "modifiers": {}
+    }
+  },
+  "connections": {
+    "invocation": {
+      "description": "API call or service invocation",
+      "baseCost": 0,
+      "protocolCosts": {
+        "HTTP": 0,
+        "HTTPS": 0,
+        "gRPC": 0,
+        "WebSocket": 0
+      }
+    },
+    "trust": {
+      "description": "Federation agreement between realms",
+      "baseCost": 4.60,
+      "note": "Certificate management, federation metadata hosting",
+      "crossProviderCost": 13.80
+    },
+    "legacyConnection": {
+      "description": "Integration with legacy system",
+      "baseCost": 9.20,
+      "note": "Adapter/middleware overhead for legacy integration"
+    }
+  },
+  "modifiers": {
+    "encryption": {
+      "description": "TLS certificate management for encrypted connections",
+      "cost": 4.60,
+      "applicationType": "once",
+      "note": "One-time cost per diagram if any connection has wam:encrypted=true"
+    },
+    "publicFacing": {
+      "description": "Load balancer + basic WAF/DDoS protection for public-facing components",
+      "cost": 23.00,
+      "applicationType": "once",
+      "note": "One-time cost per diagram if any component has wam:publicFacing=true"
+    },
+    "crossRealm": {
+      "description": "API gateway or service mesh for cross-boundary traffic",
+      "cost": 18.40,
+      "applicationType": "perPair",
+      "note": "Cost per cross-realm pair for invocations crossing security realm boundaries"
+    }
+  },
+  "unitPrices": {
+    "service": {
+      "serverless": {
+        "pricePerMillionRequests": 0.18,
+        "pricePerGBSecond": 0.0000153334,
+        "note": "AWS Lambda average; Azure Functions similar at €0.000015/GB-s"
+      },
+      "container": {
+        "note": "Uses tier price from component pricing multiplied by instanceCount"
+      }
+    },
+    "application": {
+      "bandwidthPerGB": 0.08,
+      "storagePerGB": 0.02,
+      "note": "AWS CloudFront avg bandwidth; S3 standard storage"
+    },
+    "dataProvider": {
+      "storagePerGB": 0.11,
+      "backupPerGB": 0.09,
+      "multiAZMultiplier": 2.0,
+      "note": "AWS gp3 SSD avg storage; backup pricing; Multi-AZ doubles base"
+    },
+    "identityProvider": {
+      "freeMAUs": 50000,
+      "pricePerMAU": 0.0051,
+      "mfaPerMAU": 0.06,
+      "note": "AWS Cognito: first 50k free, then €0.0051/MAU; MFA €0.06/MAU"
+    },
+    "processUnit": {
+      "pricePerVCPUHour": 0.04,
+      "pricePerGBHour": 0.0037,
+      "hoursPerMonth": 730,
+      "note": "Average across AWS/Azure/GCP; 730 hours = ~1 month"
+    },
+    "securityRealm": {
+      "vpcCost": 46.00,
+      "peeringCostPerConnection": 23.00,
+      "note": "Dedicated VPC + NAT gateway; VPC peering per connection"
+    },
+    "connections": {
+      "invocation": {
+        "dataTransferPerGB": 0.08,
+        "apiGatewayPerMillion": 3.22,
+        "apiGatewayBaseCost": 23.00,
+        "note": "AWS data transfer avg; API Gateway REST API pricing"
+      },
+      "trust": {
+        "managedCertCost": 4.60,
+        "federationBaseCost": 1.84,
+        "note": "ACM-style managed certificate; federation metadata hosting"
+      },
+      "legacyConnection": {
+        "adapterBaseCost": 9.20,
+        "transferPricePerGB": 0.08,
+        "note": "Middleware/adapter overhead; standard data transfer pricing"
+      }
+    }
+  }
+}

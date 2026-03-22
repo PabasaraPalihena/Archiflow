@@ -1,0 +1,342 @@
+/* ── Container ── */
+.settings-container {
+  padding: 24px 32px;
+  min-height: 100vh;
+  background: #ffffff;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.settings-page-title {
+  margin-top: 0;
+  margin-bottom: 36px;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6b21a8 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Grid ── */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 720px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Card ── */
+.settings-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.settings-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Card Header ── */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 28px 0;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-icon {
+  background: rgba(108, 77, 255, 0.1);
+  color: #6c4dff;
+}
+
+.subscription-icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.password-icon {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.delete-account-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* ── Card Body ── */
+.card-body {
+  padding: 20px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.card-body label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: -6px;
+}
+
+/* ── Password Visibility Toggle ── */
+.settings-card .password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.settings-card .password-input-wrapper input {
+  padding-right: 44px;
+  width: 100%;
+}
+
+.settings-card .password-toggle {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.settings-card .password-toggle:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* ── Inputs ── */
+.input {
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6c4dff;
+  box-shadow: 0 0 0 3px rgba(108, 77, 255, 0.08);
+}
+
+.disabled {
+  background: #f5f5f8;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* ── Buttons ── */
+.primary-btn {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  background: linear-gradient(135deg, #6c4dff, #8c5bff);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+  box-shadow: 0 8px 20px rgba(108, 77, 255, 0.25);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(108, 77, 255, 0.35);
+}
+
+.delete-account-btn {
+  padding: 12px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.delete-account-btn:hover {
+  background: #dc2626;
+}
+
+/* ── Subscription Card ── */
+.plan-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-label {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.plan-label--developer {
+  background: #f0f0f5;
+  color: #555;
+}
+
+.plan-label--professional {
+  background: rgba(108, 77, 255, 0.1);
+  color: #6c4dff;
+}
+
+.plan-label--enterprise {
+  background: linear-gradient(135deg, #6c4dff, #8c5bff);
+  color: #fff;
+}
+
+.plan-price-tag {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.plan-ai-limit {
+  font-size: 13px;
+  color: #555;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid #f0f0f5;
+}
+
+.plan-ai-limit strong {
+  color: #6c4dff;
+}
+
+/* ── Feature List ── */
+.plan-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #444;
+}
+
+.plan-feature-list li.excluded {
+  color: #aaa;
+}
+
+.feature-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plan-feature-list li.included .feature-check {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+}
+
+.plan-feature-list li.excluded .feature-check {
+  background: rgba(0, 0, 0, 0.05);
+  color: #bbb;
+}
+
+/* ── Exports row ── */
+.plan-exports-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.plan-exports-row .exports-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+}
+
+.export-chip {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #f0f0f5;
+  color: #555;
+}
+
+/* ── Change plan link ── */
+.change-plan-link {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c4dff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.change-plan-link:hover {
+  color: #5a3fd4;
+  text-decoration: underline;
+}
+
+/* ── Delete Account Card ── */
+.delete-account-card {
+  border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+.delete-account-text {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+  line-height: 1.5;
+}

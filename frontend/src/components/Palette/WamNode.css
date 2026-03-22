@@ -1,0 +1,227 @@
+/* Make NodeResizer controls always on top and clickable */
+.react-flow__resize-control {
+  z-index: 9999 !important;
+  pointer-events: all !important;
+}
+
+/* Optional: make the little resize squares easier to grab */
+.react-flow__resize-control.handle {
+  width: 5px !important;
+  height: 5px !important;
+}
+.wamNode {
+  position: relative;
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: inherit;
+  transform-origin: center;
+}
+
+/* Inner content transforms (rotation) */
+.wamContent {
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wamShape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.wamLabel {
+  font-size: clamp(
+    8px,
+    1.2vw,
+    8px
+  ); /* Scales with viewport/container, max size smaller */
+  font-weight: 500; /* Increased from 400 for better readability */
+  line-height: 1.2; /* Better spacing */
+  padding: 0px;
+  max-width: 90%; /* Prevent overflow */
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+  margin-top: -7px;
+}
+.wamLabel.isRealmLabel {
+  margin-top: -40px;
+}
+
+/* .wamLabel {
+  font-size: 11px;
+  font-weight: 400;
+  color: #111827;
+  line-height: 1;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  padding: 1px 3px;
+} */
+
+.wamShapeBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Handles remain invisible but connectable */
+.wamHiddenHandle {
+  width: 18px !important;
+  height: 18px !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 6;
+}
+
+.wamCornerHandle {
+  position: absolute !important;
+  width: 18px !important;
+  height: 18px !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 6;
+}
+
+.react-flow__handle.source {
+  z-index: 10 !important;
+}
+.react-flow__handle.target {
+  z-index: 7 !important;
+}
+
+/* Small dots shown on hover/selected */
+.wamNode:hover .wamHiddenHandle::after,
+.wamNode:hover .wamCornerHandle::after,
+.react-flow__node.selected .wamHiddenHandle::after,
+.react-flow__node.selected .wamCornerHandle::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 1.5px solid #111827;
+  border-radius: 999px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Corner positions */
+.wamCornerHandle.tl {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+.wamCornerHandle.tr {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+.wamCornerHandle.br {
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+}
+.wamCornerHandle.bl {
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
+}
+
+/* Relation menu */
+.wamRelationMenu {
+  position: absolute;
+  right: -43px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(17, 24, 39, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+}
+
+.wamRelBtn {
+  width: 32px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(17, 24, 39, 0.2);
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.wamRelBtn:hover {
+  border-color: rgba(17, 24, 39, 0.45);
+}
+
+/* Security Realm - pointer events pass through to children */
+.wamNode.isRealm .wamContent,
+.wamNode.isRealm .wamShapeBox,
+.wamNode.isRealm .wamShape,
+.wamNode.isRealm .wamShape svg,
+.wamNode.isRealm .wamShape svg rect,
+.wamNode.isRealm .wamShape svg path {
+  pointer-events: none;
+}
+
+/* Keep the realm label clickable for selection */
+.wamNode.isRealm .wamLabel {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Security realm nodes render behind other elements */
+.react-flow__node.wam-realm {
+  z-index: -1 !important;
+}
+
+/* All other nodes render on top */
+.react-flow__node:not(.wam-realm) {
+  z-index: 10 !important;
+}
+
+/* Edges between realm and regular nodes */
+.react-flow__edge {
+  z-index: 5 !important;
+}
+
+/* Make edges easier to click */
+.react-flow__edge-path {
+  pointer-events: stroke !important;
+  cursor: pointer;
+}
+
+.react-flow__edge-text {
+  pointer-events: auto !important;
+  cursor: pointer;
+}

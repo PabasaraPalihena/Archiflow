@@ -1,0 +1,125 @@
+.editorShell {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 300px 1fr 320px; /* LEFT | CANVAS | RIGHT */
+  background: #f6f7fb;
+  transition: grid-template-columns 0.25s ease;
+}
+
+.editorShell.rightCollapsed {
+  grid-template-columns: 300px 1fr 36px;
+}
+
+.editorShell.leftCollapsed {
+  grid-template-columns: 36px 1fr 320px;
+}
+
+.editorShell.leftCollapsed.rightCollapsed {
+  grid-template-columns: 36px 1fr 36px;
+}
+
+/* LEFT PANEL */
+.leftPanel {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #ffffff;
+  border-right: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.02);
+  padding: 12px;
+  box-sizing: border-box;
+  position: relative;
+  transition: padding 0.25s ease;
+}
+
+.leftPanel.collapsed {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Left panel toggle */
+.lpToggle {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  z-index: 10;
+  width: 28px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: -2px 2px 8px rgba(107, 33, 168, 0.25);
+  transition: all 0.2s ease;
+}
+
+.lpToggle:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  box-shadow: -3px 2px 12px rgba(107, 33, 168, 0.35);
+  transform: scale(1.05);
+}
+
+.leftPanel.collapsed .lpToggle {
+  right: 4px;
+}
+
+/* CANVAS */
+.centerCanvas {
+  height: 100%;
+  overflow: hidden;
+  background: #f6f7fb;
+  position: relative;
+}
+
+/* RIGHT PANEL */
+.rightPanel {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #ffffff;
+  border-left: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.02);
+  padding: 12px;
+  box-sizing: border-box;
+  position: relative;
+  transition: padding 0.25s ease;
+}
+
+.rightPanel.collapsed {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Toggle button */
+.rpToggle {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  z-index: 10;
+  width: 28px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(107, 33, 168, 0.25);
+  transition: all 0.2s ease;
+}
+
+.rpToggle:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  box-shadow: 3px 2px 12px rgba(107, 33, 168, 0.35);
+  transform: scale(1.05);
+}
+
+.rightPanel.collapsed .rpToggle {
+  left: 4px;
+}

@@ -1,0 +1,28 @@
+/* MicButton.module.css */
+.micButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.micButton.default {
+  background-color: #6c4dff;
+}
+
+.micButton.default:hover {
+  background-color: #6c4dff; 
+}
+
+.micButton.listening {
+  background-color: #ef4444; 
+}
+
+.micButton:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,102 @@
+{
+  "components": {
+    "service": {
+      "fields": [
+        { "key": "requestsPerMonth", "label": "Requests per month", "type": "number", "unit": "requests", "default": 100000, "min": 0, "step": 10000 },
+        { "key": "avgResponseTimeMs", "label": "Avg response time", "type": "number", "unit": "ms", "default": 200, "min": 1, "step": 50 },
+        { "key": "memoryMB", "label": "Memory allocation", "type": "number", "unit": "MB", "default": 256, "min": 128, "step": 128 },
+        { "key": "instanceCount", "label": "Number of instances", "type": "number", "unit": "instances", "default": 1, "min": 1, "step": 1 }
+      ],
+      "costFormula": "For serverless: (requestsPerMonth / 1000000) * pricePerMillionRequests + (requestsPerMonth * avgResponseTimeMs / 1000) * (memoryMB / 1024) * pricePerGBSecond. For container/VM: instanceCount * monthlyInstancePrice."
+    },
+    "application": {
+      "fields": [
+        { "key": "monthlyVisitors", "label": "Monthly visitors", "type": "number", "unit": "visitors", "default": 10000, "min": 0, "step": 5000 },
+        { "key": "bandwidthGB", "label": "Bandwidth", "type": "number", "unit": "GB/month", "default": 10, "min": 0, "step": 5 },
+        { "key": "storageGB", "label": "Static asset storage", "type": "number", "unit": "GB", "default": 1, "min": 0, "step": 1 }
+      ],
+      "costFormula": "hostingBase + (bandwidthGB * pricePerGB) + (storageGB * storagePrice)"
+    },
+    "dataProvider": {
+      "fields": [
+        { "key": "storageGB", "label": "Storage size", "type": "number", "unit": "GB", "default": 10, "min": 0, "step": 5 },
+        { "key": "readOpsPerMonth", "label": "Read operations/month", "type": "number", "unit": "operations", "default": 500000, "min": 0, "step": 50000 },
+        { "key": "writeOpsPerMonth", "label": "Write operations/month", "type": "number", "unit": "operations", "default": 100000, "min": 0, "step": 10000 },
+        { "key": "backupEnabled", "label": "Automated backups", "type": "boolean", "default": false },
+        { "key": "multiAZ", "label": "Multi-AZ / High availability", "type": "boolean", "default": false }
+      ],
+      "costFormula": "baseInstancePrice + (storageGB * storagePerGB) + (backupEnabled ? storageGB * backupPerGB : 0) + (multiAZ ? baseInstancePrice * 1.0 : 0)"
+    },
+    "identityProvider": {
+      "fields": [
+        { "key": "monthlyActiveUsers", "label": "Monthly active users", "type": "number", "unit": "MAUs", "default": 1000, "min": 0, "step": 500 },
+        { "key": "mfaEnabled", "label": "MFA enabled", "type": "boolean", "default": false },
+        { "key": "socialLogin", "label": "Social login providers", "type": "number", "unit": "providers", "default": 0, "min": 0, "step": 1 }
+      ],
+      "costFormula": "First 50000 MAUs often free (AWS Cognito, Auth0 free tier). Beyond that: monthlyActiveUsers * pricePerMAU + (mfaEnabled ? monthlyActiveUsers * mfaPerUser : 0)"
+    },
+    "processUnit": {
+      "fields": [
+        { "key": "computeHoursPerMonth", "label": "Compute hours/month", "type": "number", "unit": "hours", "default": 100, "min": 0, "step": 10 },
+        { "key": "memoryGB", "label": "Memory", "type": "number", "unit": "GB", "default": 1, "min": 0.5, "step": 0.5 },
+        { "key": "cpuCores", "label": "CPU cores", "type": "number", "unit": "vCPUs", "default": 1, "min": 0.25, "step": 0.25 },
+        { "key": "alwaysRunning", "label": "Always running (vs scheduled)", "type": "boolean", "default": false }
+      ],
+      "costFormula": "If alwaysRunning: cpuCores * pricePerVCPU * 730 + memoryGB * pricePerGB * 730. If scheduled: computeHoursPerMonth * (cpuCores * pricePerVCPU + memoryGB * pricePerGB)"
+    },
+    "aiApplication": {
+      "fields": [
+        { "key": "monthlyCost", "label": "Monthly cost (user-defined)", "type": "number", "unit": "EUR/month", "default": 0, "min": 0, "step": 10 }
+      ],
+      "costFormula": "User-defined: enter your expected monthly cost for this AI application."
+    },
+    "aiService": {
+      "fields": [
+        { "key": "monthlyCost", "label": "Monthly cost (user-defined)", "type": "number", "unit": "EUR/month", "default": 0, "min": 0, "step": 10 }
+      ],
+      "costFormula": "User-defined: enter your expected monthly cost for this AI service (e.g., API fees, inference costs)."
+    },
+    "aiProcess": {
+      "fields": [
+        { "key": "monthlyCost", "label": "Monthly cost (user-defined)", "type": "number", "unit": "EUR/month", "default": 0, "min": 0, "step": 10 }
+      ],
+      "costFormula": "User-defined: enter your expected monthly cost for this AI process (e.g., training, batch processing)."
+    },
+    "dataset": {
+      "fields": [
+        { "key": "monthlyCost", "label": "Monthly cost (user-defined)", "type": "number", "unit": "EUR/month", "default": 0, "min": 0, "step": 10 }
+      ],
+      "costFormula": "User-defined: enter your expected monthly cost for this dataset (e.g., storage, data transfer)."
+    },
+    "securityRealm": {
+      "fields": [
+        { "key": "dedicatedVPC", "label": "Dedicated VPC/Network", "type": "boolean", "default": false },
+        { "key": "networkPeering", "label": "VPC/Network peering", "type": "boolean", "default": false }
+      ],
+      "costFormula": "dedicatedVPC ? vpcCost : 0 + networkPeering ? peeringCostPerConnection : 0"
+    }
+  },
+  "connections": {
+    "invocation": {
+      "fields": [
+        { "key": "requestsPerMonth", "label": "Requests through this connection", "type": "number", "unit": "requests/month", "default": 100000, "min": 0, "step": 10000 },
+        { "key": "avgPayloadKB", "label": "Avg payload size", "type": "number", "unit": "KB", "default": 5, "min": 0.1, "step": 1 },
+        { "key": "needsApiGateway", "label": "API Gateway / Load Balancer", "type": "boolean", "default": false }
+      ],
+      "costFormula": "dataTransferGB = (requestsPerMonth * avgPayloadKB) / 1048576. cost = dataTransferGB * pricePerGB + (needsApiGateway ? requestsPerMonth / 1000000 * apiGatewayPerMillion + gatewayBaseCost : 0)"
+    },
+    "trust": {
+      "fields": [
+        { "key": "certificateManaged", "label": "Managed certificate (vs self-signed)", "type": "boolean", "default": true }
+      ],
+      "costFormula": "certificateManaged ? managedCertCost : 0 + federationMetadataHosting"
+    },
+    "legacyConnection": {
+      "fields": [
+        { "key": "adapterRequired", "label": "Adapter/middleware needed", "type": "boolean", "default": true },
+        { "key": "dataVolumeGB", "label": "Monthly data volume", "type": "number", "unit": "GB/month", "default": 1, "min": 0, "step": 1 }
+      ],
+      "costFormula": "adapterRequired ? adapterBaseCost : 0 + dataVolumeGB * transferPricePerGB"
+    }
+  }
+}
